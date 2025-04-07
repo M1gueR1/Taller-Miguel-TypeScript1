@@ -5,20 +5,20 @@ let totalSeasons = 0;
 let seriesTbody: HTMLElement = document.getElementById('series')!;
 const promedioDiv: HTMLElement = document.getElementById('promedio')!;
 
-renderSeriesInTable(series);
+actualizarTablaDinamica(series);
 
 
 
-function renderSeriesInTable(series: Serie[]): void {
-console.log('Desplegando series');
-series.forEach((serie) => {
+function actualizarTablaDinamica(series: Serie[]): void {
+console.log('Llenando la tabla con series');
+for (let i = 0; i < series.length; i++) {
     let trElement = document.createElement("tr");
-    trElement.innerHTML = `<td>${serie.position}</td>
-                        <td> <a href=\"${serie.linkSerie}\" target="_blank"> ${serie.name} </td>
-                        <td>${serie.channel}</td>
-                        <td>${serie.amountOfSeasons}</td>`;
+    trElement.innerHTML = `<td>${series[i].position}</td>
+                        <td> <a href="${series[i].linkSerie}" target="_blank">${series[i].name}</a> </td>
+                        <td>${series[i].channel}</td>
+                        <td>${series[i].amountOfSeasons}</td>`;
     seriesTbody.appendChild(trElement);
-});
+}
 }
 
 promedioDiv.innerHTML = `Seasons average: ${calcularPromedioTemporadas(series)}`;

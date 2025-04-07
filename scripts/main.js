@@ -2,14 +2,14 @@ import { series } from './data.js';
 var totalSeasons = 0;
 var seriesTbody = document.getElementById('series');
 var promedioDiv = document.getElementById('promedio');
-renderSeriesInTable(series);
-function renderSeriesInTable(series) {
-    console.log('Desplegando series');
-    series.forEach(function (serie) {
+actualizarTablaDinamica(series);
+function actualizarTablaDinamica(series) {
+    console.log('Llenando la tabla con series');
+    for (var i = 0; i < series.length; i++) {
         var trElement = document.createElement("tr");
-        trElement.innerHTML = "<td>".concat(serie.position, "</td>\n                        <td> <a href=\"").concat(serie.linkSerie, "\" target=\"_blank\"> ").concat(serie.name, " </td>\n                        <td>").concat(serie.channel, "</td>\n                        <td>").concat(serie.amountOfSeasons, "</td>");
+        trElement.innerHTML = "<td>".concat(series[i].position, "</td>\n                        <td> <a href=\"").concat(series[i].linkSerie, "\" target=\"_blank\">").concat(series[i].name, "</a> </td>\n                        <td>").concat(series[i].channel, "</td>\n                        <td>").concat(series[i].amountOfSeasons, "</td>");
         seriesTbody.appendChild(trElement);
-    });
+    }
 }
 promedioDiv.innerHTML = "Seasons average: ".concat(calcularPromedioTemporadas(series));
 function calcularPromedioTemporadas(series) {
