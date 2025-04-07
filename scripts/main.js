@@ -1,4 +1,5 @@
 import { series } from './data.js';
+var totalSeasons = 0;
 var seriesTbody = document.getElementById('series');
 var promedioDiv = document.getElementById('promedio');
 renderSeriesInTable(series);
@@ -12,7 +13,9 @@ function renderSeriesInTable(series) {
 }
 promedioDiv.innerHTML = "Seasons average: ".concat(calcularPromedioTemporadas(series));
 function calcularPromedioTemporadas(series) {
-    var totalSeasons = 0;
-    series.forEach(function (serie) { return totalSeasons += serie.amountOfSeasons; });
-    return totalSeasons / series.length;
+    for (var i = 0; i < series.length; i++) {
+        totalSeasons += series[i].amountOfSeasons;
+    }
+    var promedioSeasons = totalSeasons / series.length;
+    return promedioSeasons;
 }

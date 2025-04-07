@@ -1,6 +1,7 @@
 import { Serie } from './Serie.js';
 import { series } from './data.js';
 
+let totalSeasons = 0;
 let seriesTbody: HTMLElement = document.getElementById('series')!;
 const promedioDiv: HTMLElement = document.getElementById('promedio')!;
 
@@ -24,7 +25,9 @@ promedioDiv.innerHTML = `Seasons average: ${calcularPromedioTemporadas(series)}`
 
 
 function calcularPromedioTemporadas(series: Serie[]): number {
-    let totalSeasons = 0;
-    series.forEach((serie) => totalSeasons += serie.amountOfSeasons);
-    return totalSeasons / series.length;
+    for (let i = 0; i < series.length; i++) {
+        totalSeasons += series[i].amountOfSeasons;
+      }
+    let promedioSeasons = totalSeasons / series.length;
+    return promedioSeasons;
   }
